@@ -36,7 +36,7 @@ designmzib<-function(m,theta,p0,n,K){
 # UCL control limit of the upper-sided ZIB-Shewhart chart in the known parameters case
   UCL0<-floor(n*p0*theta+K*sqrt(n*p0*theta*(1-p0+n*p0*(1-theta))))
 # the OoC probability
-  beta0<-1-pzibinom(UCL0,size=n,prob=p0,pstr0=(1-theta),lower.tail=TRUE,log.p=FALSE)
+  beta0<-1-pzibinom(UCL0,size=n,prob=p0,pstr0=(1-theta))
 # IC ARL and SDRL
   ARL0<-1/(beta0)
   SDRL0<-sqrt(1-beta0)/(beta0)
@@ -48,7 +48,7 @@ designmzib<-function(m,theta,p0,n,K){
   UCL1<-function(x){
     floor(n*(x/(n*m*theta))*theta+K*sqrt(n*(x/(n*m*theta))*theta*(1-(x/(n*m*theta))+n*(x/(n*m*theta))*(1-theta))))
   }
-  Cbeta<-function(x){1-pzibinom(UCL1(x),size=n,prob=p0,pstr0=(1-theta),lower.tail=TRUE,log.p=FALSE)}
+  Cbeta<-function(x){1-pzibinom(UCL1(x),size=n,prob=p0,pstr0=(1-theta))}
   CARL<-function(x){
     1/Cbeta(x)
   }
